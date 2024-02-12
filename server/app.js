@@ -6,7 +6,7 @@ import authRoutes from "./router/auth.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import appointmentRoutes from "./router/appointment.js";
-
+import adminRoutes from "./router/admin.js";
 
 dotenv.config();
 
@@ -14,12 +14,14 @@ const app = express();
 const port = process.env.PORT;
 app.use(express.json());
 // app.use(cors({ origin: "http://localhost:5173", credentials: true }));
-app.use(cors({ origin: "https://solarmed.onrender.com", credentials: true }));
+app.use(cors({ origin: "https://solar-med.vercel.app/", credentials: true }));
 
 app.use(cookieParser());
 //Middleware
 app.use(authRoutes);
 app.use("/doc", appointmentRoutes);
+app.use("/admin", adminRoutes);
+
 
 
 // app.get("/", middleware,(req, res) => {

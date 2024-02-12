@@ -15,7 +15,7 @@ const Hero = () => {
       scale: 1,
     },
     hover: {
-      color: "skyblue",
+      // color: "skyblue",
       scale: 1.2,
     },
   };

@@ -26,6 +26,7 @@ const Signup = () => {
   const signupSubmit = async (e) => {
     e.preventDefault();
     try {
+      // const response = await fetch("http://localhost:8080/register", {
       const response = await fetch("https://solarmed.onrender.com/register", {
           method: 'POST',
           headers: {
@@ -43,6 +44,7 @@ const Signup = () => {
       }
     } catch (err) {
       alert(err);
+      console.log(err);
     }
   }
   return (

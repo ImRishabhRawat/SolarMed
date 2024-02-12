@@ -8,9 +8,7 @@ router.get('/appointment',Authenticate, (req, res) => {
 	res.json(req.rootUser); 
 });
 
-router.get("/admin", Authenticate, (req, res) => {
-	res.json(req.rootUser);
-});
+
 
 router.post("/appointments", Authenticate, async (req, res) => {
 	try {

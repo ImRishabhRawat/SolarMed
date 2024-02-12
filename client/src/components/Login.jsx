@@ -15,6 +15,7 @@ const Login = () => {
     e.preventDefault();
     // Handle form submission (e.g., validate credentials, make API call)
     try {
+      // const response = await fetch("http://localhost:8080/login", {
       const response = await fetch("https://solarmed.onrender.com/login", {
         method: "POST",
         headers: {
