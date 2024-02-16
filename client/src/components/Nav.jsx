@@ -86,7 +86,7 @@ const Nav = () => {
           {
               isOpen && (
                   <div className="mt-4 w-full  basis-full md:hidden">
-                      <div onClick={toggleNavbar}  className=" bg-[url('../../make.jpg')] mb-2 p-4 rounded-xl border border-zinc-100 flex flex-row-reverse gap-4">
+                      <div onClick={toggleNavbar}  className=" bg-[#fefefe] mb-2 p-4 rounded-xl border border-zinc-100 flex flex-row-reverse gap-4">
                           <div className="w-1/2  links flex flex-col  items-end text-[6vw] font-black tracking-wider">
                               <NavLinks />
                           </div>

@@ -1,60 +1,70 @@
 import { useEffect, useState } from "react";
-import { MdOutlineEvent, MdOutlineAccessTime, MdOutlineLocalHospital, MdOutlineAssignment } from "react-icons/md";
-import { useNavigate } from 'react-router-dom';
+import {
+  MdOutlineEvent,
+  MdOutlineAccessTime,
+  MdOutlineLocalHospital,
+  MdOutlineAssignment,
+} from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 const Appointment = () => {
-  const token = localStorage.getItem('token');
-  const userId = localStorage.getItem('userId'); // Retrieve the user's ID
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId"); // Retrieve the user's ID
   // const [userdata, setUserData] = useState();
-  const doctorId = '65c77f720d6635ebef2cb998'; 
+  const doctorId = "65c77f720d6635ebef2cb998";
   const navigate = useNavigate();
   const [appointment, setAppointment] = useState({
-    patientName:'',
-    patient: '',
-    doctor: '',
-    date: '',
-    time: '',
-    status: 'Scheduled',
-    symptoms: '',
-    type: '',
+    patientName: "",
+    patient: "",
+    doctor: "",
+    date: "",
+    time: "",
+    status: "Scheduled",
+    symptoms: "",
+    type: "",
   });
 
   const handleChange = (e) => {
     setAppointment({
       ...appointment,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const appointmentDateTime = new Date(`${appointment.date}T${appointment.time}`);
+    const appointmentDateTime = new Date(
+      `${appointment.date}T${appointment.time}`,
+    );
 
-  // Get the current date and time
-  const currentDateTime = new Date();
+    // Get the current date and time
+    const currentDateTime = new Date();
 
-  // Check if the appointment date and time are in the future
-  if (appointmentDateTime <= currentDateTime) {
-    alert('Invalid appointment details: Date and time must be in the future');
-    return;
-  }
+    // Check if the appointment date and time are in the future
+    if (appointmentDateTime <= currentDateTime) {
+      alert("Invalid appointment details: Date and time must be in the future");
+      return;
+    }
     try {
-      // const response = await fetch("http://localhost:8080/doc/appointments", {
-      const response = await fetch("https://solarmed.onrender.com/doc/appointments", {
-
+      setLoading(true);
+      const response = await fetch("http://localhost:8080/doc/appointments", {
+        // const response = await fetch("https://solarmed.onrender.com/doc/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           ...appointment,
-         patient: userId, // Include the user's ID
-        doctor: doctorId,}),
+          patient: userId, // Include the user's ID
+          doctor: doctorId,
+        }),
       });
       if (!response.ok) {
-      throw new Error('Server responded with an error');
-    }
+        throw new Error("Server responded with an error");
+      }
       const data = await response.json();
       // if (!data || response.status === 400) {
       //   alert("Invalid appointment details");
@@ -63,48 +73,53 @@ const Appointment = () => {
       //   navigate("/");
       // }
       alert("Appointment created successfully");
-    navigate("/");
+      navigate("/");
     } catch (error) {
       console.log(error);
       alert("Invalid appointment details");
+    } finally {
+      setLoading(false  );
     }
   };
 
-const callAppointment = async() => { 
+  const callAppointment = async () => {
     try {
-      const token = localStorage.getItem('token'); // get the token from local storage
-      // const res = await fetch('http://localhost:8080/doc/appointment', {
-      const res = await fetch('https://solarmed.onrender.com/doc/appointment', {
-        method: 'GET',
+      const token = localStorage.getItem("token"); // get the token from local storage
+      const res = await fetch("http://localhost:8080/doc/appointment", {
+        // const res = await fetch('https://solarmed.onrender.com/doc/appointment', {
+        method: "GET",
         headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` // add the token to the Authorization header
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // add the token to the Authorization header
         },
-        credentials: "include"
+        credentials: "include",
       });
       const data = await res.json();
       console.log(data);
-        // setUserData(data);
-      if (!res.status === 200) { 
+      // setUserData(data);
+      if (!res.status === 200) {
         throw new Error(res.error);
       }
     } catch (error) {
       console.log(error);
       navigate("/login");
     }
-  }
+  };
   useEffect(() => {
     callAppointment();
-},[])
+  }, []);
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <div className="relative bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-semibold mb-4">Create Appointment</h2>
         <form method="POST">
           <div className="mb-4 flex gap-2 items-center">
-            <label htmlFor="patient" className="block text-gray-700 font-medium text-2xl">
+            <label
+              htmlFor="patient"
+              className="block text-gray-700 font-medium text-2xl"
+            >
               <MdOutlineLocalHospital />
             </label>
             <input
@@ -149,7 +164,10 @@ const callAppointment = async() => {
             />
           </div> */}
           <div className="mb-4 flex gap-2 items-center">
-            <label htmlFor="date" className="block text-gray-700 font-medium text-2xl">
+            <label
+              htmlFor="date"
+              className="block text-gray-700 font-medium text-2xl"
+            >
               <MdOutlineEvent />
             </label>
             <input
@@ -163,7 +181,10 @@ const callAppointment = async() => {
             />
           </div>
           <div className="mb-4 flex gap-2 items-center">
-            <label htmlFor="time" className="block text-gray-700 font-medium text-2xl">
+            <label
+              htmlFor="time"
+              className="block text-gray-700 font-medium text-2xl"
+            >
               <MdOutlineAccessTime />
             </label>
             <input
@@ -177,7 +198,10 @@ const callAppointment = async() => {
             />
           </div>
           <div className="mb-4 flex gap-2 items-center">
-            <label htmlFor="symptoms" className="block text-gray-700 font-medium text-2xl">
+            <label
+              htmlFor="symptoms"
+              className="block text-gray-700 font-medium text-2xl"
+            >
               <MdOutlineAssignment />
             </label>
             <input
@@ -192,7 +216,10 @@ const callAppointment = async() => {
             />
           </div>
           <div className="mb-4 flex gap-2 items-center">
-            <label htmlFor="type" className="block text-gray-700 font-medium text-2xl">
+            <label
+              htmlFor="type"
+              className="block text-gray-700 font-medium text-2xl"
+            >
               <MdOutlineAssignment />
             </label>
             <select
@@ -216,6 +243,11 @@ const callAppointment = async() => {
           >
             Create Appointment
           </button>
+          {loading && (
+            <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
+              <Loader />
+            </div>
+          )}
         </form>
       </div>
     </div>

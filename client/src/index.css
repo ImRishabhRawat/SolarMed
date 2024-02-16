@@ -2,10 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  text-decoration: none;
+@font-face {
+	font-family: "Wingdings";
+	src: url("C:\Windows\Fonts\Wingdings.ttf"); /*URL to font*/
 }
 
+.Wingdings {
+	font-family: "Wingdings";
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+.highlight{
+	background-color: red;
+}

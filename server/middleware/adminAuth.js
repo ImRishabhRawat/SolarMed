@@ -21,9 +21,8 @@ const adminAuth = async (req, res, next) => {
         }
         //  const role = req.rootUser.role;
         if (rootUser.role !== "admin") {
-					res.status(403).send("Forbidden: You are not an admin");
-					// throw new Error("Not admin");
-				} 
+			return res.status(403).send("Forbidden: You are not an admin");
+		}
 
 		req.token = token;
 		req.rootUser = rootUser;
