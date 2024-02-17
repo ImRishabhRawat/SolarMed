@@ -61,7 +61,7 @@ router.post("/appointments", Authenticate, async (req, res) => {
 
 router.put("/appointments/edit/:id", async (req, res) => {
 	try {
-		const { doctor } = req.body;
+		const { status } = req.body;
 		const { id } = req.params;
 
 		let appointment = await Appointment.findById(id);
@@ -72,7 +72,7 @@ router.put("/appointments/edit/:id", async (req, res) => {
 		// Update the doctor in the appointment
 		appointment = await Appointment.findByIdAndUpdate(
 			id,
-			{ doctor },
+			{ status },
 			{ new: true }
 		);
 

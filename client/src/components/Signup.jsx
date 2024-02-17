@@ -28,12 +28,13 @@ const Signup = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8080/register", {
-        // const response = await fetch("https://solarmed.onrender.com/register", {
+      // const response = await fetch("http://localhost:8080/register", {
+        const response = await fetch("https://solarmed.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-        },
+          },
+        credentials: "include",
         body: JSON.stringify({ ...user }),
       });
       const data = await response.json();

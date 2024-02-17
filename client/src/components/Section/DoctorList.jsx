@@ -9,8 +9,8 @@ const DoctorList = () => {
     
       const getDoctors = async () => {
     try {
-      const res = await fetch("http://localhost:8080/admin/all/doctors", {
-        // const res = await fetch('https://solarmed.onrender.com/admin/', {
+      // const res = await fetch("http://localhost:8080/admin/all/doctors", {
+      const res = await fetch("https://solarmed.onrender.com/admin/all/doctors", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -48,8 +48,8 @@ const DoctorList = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8080/doctors/register", {
-        // const response = await fetch("https://solarmed.onrender.com/doc/appointments", {
+      // const response = await fetch("http://localhost:8080/doctors/register", {
+      const response = await fetch("https://solarmed.onrender.com/doctors/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -79,7 +79,8 @@ const DoctorList = () => {
      const handleDelete = async (id) => {
     console.log("delete " + id);
     try {
-      const res = await fetch(`http://localhost:8080/doctors/delete/${id}`, {
+      // const res = await fetch(`http://localhost:8080/doctors/delete/${id}`, {
+      const res = await fetch(`tps://solarmed.onrender.com/doctors/delete/${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",

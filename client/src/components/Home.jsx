@@ -45,8 +45,8 @@ const Home = () => {
           <div className=" w-full px-4 mb-8">
             <h1 className="relative font-['Helvetica_Now_Display'] text-6xl leading-[.8] md:text-8xl  md:leading-[.8] font-semibold text-zinc-900">
               Healthcare{" "}
-              <span className="absolute  logo Wingdings font-bold md:text-8xl ">
-                R{" "}
+              <span className="absolute  logo  font-bold md:text-8xl ">
+                <img src="../../sun.png" alt="sun" className="w-12 h-12 " />
               </span>
               <br />
               for Personalized <br />

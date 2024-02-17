@@ -43,10 +43,10 @@ const Hero = () => {
     >
       <div className="overlay h-full w-full flex items-center justify-center">
         <motion.span
-          className="absolute logo font-[Wingdings] font-bold text-6xl md:text-8xl"
+          className="absolute logo font-bold"
           style={{ rotate: rotation }} // Apply the rotation
         >
-          R
+                         <img src="../../sun.png" alt="sun" className="w-14 h-14 " />
         </motion.span>
       </div>
       <div className="pt-32 px-8 md:pt-40 md:px-16 mx-auto max-w-7xl border-b-2 flex flex-col items-center">

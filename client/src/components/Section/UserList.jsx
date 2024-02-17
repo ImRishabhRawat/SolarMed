@@ -7,8 +7,9 @@ const UserList = () => {
 
   const getUsers = async () => {
     try {
-      const res = await fetch("http://localhost:8080/admin/all/users", {
+      // const res = await fetch("http://localhost:8080/admin/all/users", {
         // const res = await fetch('https://solarmed.onrender.com/admin/', {
+      const res = await fetch("https://solarmed.onrender.com/admin/all/users", {
         method: "GET",
         headers: {
           Accept: "application/json",
@@ -32,7 +33,8 @@ const UserList = () => {
       const handleDelete = async (id) => {
     console.log("delete " + id);
     try {
-      const res = await fetch(`http://localhost:8080/admin/user/delete/${id}`, {
+      // const res = await fetch(`http://localhost:8080/admin/user/delete/${id}`, {
+      const res = await fetch(`https://solarmed.onrender.com/admin/user/delete/${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",

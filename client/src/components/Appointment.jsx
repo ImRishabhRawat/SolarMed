@@ -49,13 +49,14 @@ const Appointment = () => {
     }
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8080/doc/appointments", {
-        // const response = await fetch("https://solarmed.onrender.com/doc/appointments", {
+      // const response = await fetch("http://localhost:8080/doc/appointments", {
+        const response = await fetch("https://solarmed.onrender.com/doc/appointments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-        },
+          },
+        credentials: "include",
         body: JSON.stringify({
           ...appointment,
           patient: userId, // Include the user's ID
@@ -66,6 +67,7 @@ const Appointment = () => {
         throw new Error("Server responded with an error");
       }
       const data = await response.json();
+      console.log(data);
       // if (!data || response.status === 400) {
       //   alert("Invalid appointment details");
       // } else {

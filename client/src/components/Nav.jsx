@@ -95,9 +95,14 @@ const Nav = () => {
                           <div className=" sm:hidden  flex items-center flex-col">
                               {isLoggedIn ? (
                                   <>
-                            <Link to="/appointment" className='px-4 py-2' >
-                                    <Button text="Book a call" icon={<IoCall />} />
-                                </Link>
+                            {role === "admin" ? (
+                      <Link to = "/admin" className = 'px-4 py-2' >
+                          <Button text="Admin Panel" icon={<RiAdminFill />} />
+                      </Link>
+                      )
+                          : (<Link to = "/appointment" className = 'px-4 py-2' >
+                          <Button text="Book a call" icon={<IoCall />} />
+                      </Link>)}
                                 <button onClick={handleLogout} className='border-2 w-8 h-8 border-gray-400 text-xl rounded-2xl  flex items-center justify-center'>
                                     <MdOutlineLogout />
                                     </button>
