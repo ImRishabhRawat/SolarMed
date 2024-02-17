@@ -87,8 +87,8 @@ const Appointment = () => {
   const callAppointment = async () => {
     try {
       const token = localStorage.getItem("token"); // get the token from local storage
-      const res = await fetch("http://localhost:8080/doc/appointment", {
-        // const res = await fetch('https://solarmed.onrender.com/doc/appointment', {
+      // const res = await fetch("http://localhost:8080/doc/appointment", {
+        const res = await fetch('https://solarmed.onrender.com/doc/appointment', {
         method: "GET",
         headers: {
           Accept: "application/json",
