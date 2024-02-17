@@ -80,7 +80,7 @@ const DoctorList = () => {
     console.log("delete " + id);
     try {
       // const res = await fetch(`http://localhost:8080/doctors/delete/${id}`, {
-      const res = await fetch(`tps://solarmed.onrender.com/doctors/delete/${id}`, {
+      const res = await fetch(`https://solarmed.onrender.com/doctors/delete/${id}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",

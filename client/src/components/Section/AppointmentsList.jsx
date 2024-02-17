@@ -10,8 +10,8 @@ const AppointmentsList = () => {
 
   const getAppointments = async () => {
     try {
-      const res = await fetch("http://localhost:8080/doc/appointments/all", {
-        // const res = await fetch('https://solarmed.onrender.com/admin/', {
+      // const res = await fetch("http://localhost:8080/doc/appointments/all", {
+        const res = await fetch('https://solarmed.onrender.com/doc/appointments/all', {
         method: "GET",
         headers: {
           Accept: "application/json",
