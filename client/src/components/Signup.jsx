@@ -39,7 +39,7 @@ const Signup = () => {
       });
       const data = await response.json();
 
-      if (!data || response.status !== 200) {
+      if (!data || response.status !== 201) {
         alert("Invalid credentials");
       } else {
         alert("Registration successful");

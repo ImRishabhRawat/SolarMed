@@ -52,6 +52,22 @@ router.post("/register", adminAuth, async (req, res) => {
 	} 
 });
 
+router.delete("/delete/:id", adminAuth, async (req, res) => {
+	try {
+		const id = req.params.id;
+		const doctor = await Doctor.findByIdAndDelete(id);
+
+		if (!doctor) {
+			return res.status(404).json({ error: "Doctor not found" });
+		}
+
+		res.json({ message: "Doctor deleted successfully" });
+	} catch (err) {
+		console.error(err);
+		res.status(500).json({ error: "Failed to delete Doctor" });
+	}
+});
+
 // Login
 // router.post("/login", async (req, res) => {
 //   try {
