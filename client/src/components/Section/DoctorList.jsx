@@ -122,7 +122,7 @@ const DoctorList = () => {
                   <tbody key={index}>
                     <tr className="text-zinc-600">
                       <td
-                        className="border border-blue-300 px-4 py-2 text-red-500 "
+                        className="border border-blue-300 px-4 py-2 text-red-500 cursor-pointer"
                         onClick={() => handleDelete(doctor._id)}
                       >
                         <MdDelete />
